@@ -16,7 +16,7 @@ int main()
     g.diplay();
     r = &h;
     r->diplay();
-    cout << "Hello World!\n";
+   
 
 
     return 0;
