@@ -10,6 +10,12 @@ using namespace std;
 
 int main()
 {
+    A* r;
+    B g;
+    C h;
+    g.diplay();
+    r = &h;
+    r->diplay();
     cout << "Hello World!\n";
 
 
