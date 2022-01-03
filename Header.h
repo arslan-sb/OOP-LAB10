@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+
 #include <string>
 using namespace std;
 class Faculty {
@@ -8,13 +8,10 @@ protected:
 	int ID;
 
 public:
-	Faculty() :name(), ID(0) {}
-	Faculty(string n, int id) :name(n), ID(id) {}
+	Faculty();
+	Faculty(string n, int id);
 	virtual float salary() = 0;
-	virtual void print() {
-		cout << "Name: " << name << "\nID" << ID << endl;
-
-	}
+	virtual void print();
 };
 class Permanent :public Faculty {
 protected:
@@ -22,18 +19,10 @@ protected:
 	int basicPay;
 
 public:
-	Permanent() :Faculty(), years(0), basicPay(0) {}
-	Permanent(string n, int i, int y, int pay) :Faculty(n, i), years(y), basicPay(pay) {}
-	float salary() {
-		float result;
-		result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
-		return result;
-	}
-	void print() {
-		Faculty::print();
-		cout << "Years of service: " << years << endl;
-		cout << "Basic Pay: " << basicPay << endl;
-	}
+	Permanent();
+	Permanent(string n, int i, int y, int pay);
+	float salary();
+	void print();
 
 };
 class VisitingFaculty :public Faculty {
@@ -42,17 +31,9 @@ protected:
 	int numberOfHours;
 
 public:
-	VisitingFaculty() :Faculty(), rate(0), numberOfHours(0) {}
-	VisitingFaculty(string n, int i, int y, int pay) :Faculty(n, i), rate(y), numberOfHours(pay) {}
+	VisitingFaculty();
+	VisitingFaculty(string n, int i, int y, int pay);
 
-	float salary() {
-		float result;
-		result = rate * numberOfHours;
-		return result;
-	}
-	void print() {
-		Faculty::print();
-		cout << "Rate " << rate << endl;
-		cout << "Number of hours: " << numberOfHours << endl;
-	}
+	float salary();
+	void print();
 };
