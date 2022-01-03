@@ -4,6 +4,11 @@
 #include <string>
 #include "Header.h"
 using namespace std;
+void ignoreLine()
+{
+	cin.clear();
+	cin.ignore();
+}
 
 int main() {
 
@@ -18,6 +23,12 @@ int main() {
 		do
 		{
 			cin >> choice;
+			while (cin.fail()) {
+				ignoreLine();
+				cout << "please enter a integer" << endl;
+				cin >> choice;
+			}
+
 			switch (choice)
 			{
 			case 1:

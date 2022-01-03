@@ -10,13 +10,7 @@ protected:
 public:
 	Faculty();
 	Faculty(string n, int id);
-	virtual void setData() = 0 {
-		cout << "Enter Name: ";
-		cin.ignore();
-		getline(cin, name);
-		cout << "Enter ID: ";
-		cin >> ID;
-	}
+	virtual void setData() = 0;
 	virtual float salary() = 0;
 	virtual void print();
 };
