@@ -10,8 +10,9 @@ protected:
 public:
 	Faculty();
 	Faculty(string n, int id);
-	virtual void setData() {
+	virtual void setData() = 0 {
 		cout << "Enter Name: ";
+		cin.ignore();
 		getline(cin, name);
 		cout << "Enter ID: ";
 		cin >> ID;
@@ -27,13 +28,7 @@ protected:
 public:
 	Permanent();
 	Permanent(string n, int i, int y, int pay);
-	void setData(){
-		Faculty::setData();
-		cout << "Enter years of service: ";
-		cin >> years;
-		cout << "Enter basic salary: ";
-		cin >> basicPay;
-	}
+	void setData();
 	float salary();
 	void print();
 
@@ -46,13 +41,7 @@ protected:
 public:
 	VisitingFaculty();
 	VisitingFaculty(string n, int i, int y, int pay);
-	void setData() {
-		Faculty::setData();
-		cout << "Enter per hour rate: ";
-		cin >> rate;
-		cout << "Enter number of hours of teaching: ";
-		cin >> numberOfHours;
-	}
+	void setData();
 	float salary();
 	void print();
 };

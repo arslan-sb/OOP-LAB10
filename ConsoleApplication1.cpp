@@ -45,6 +45,13 @@ int main() {
 }
 //Faculty class definition 
 Faculty::Faculty() :name(), ID(0) {}
+void Faculty::setData() {
+	cout << "Enter Name: ";
+	cin.ignore();
+	getline(cin, name);
+	cout << "Enter ID: ";
+	cin >> ID;
+}
 Faculty::Faculty(string n, int id) :name(n), ID(id) {}
  void Faculty::print() {
 	cout << "Name: " << name << "\nID" << ID << endl;
@@ -56,6 +63,14 @@ Faculty::Faculty(string n, int id) :name(n), ID(id) {}
 	 float result;
 	 result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
 	 return result;
+ }
+ void Permanent::setData() {
+	 cout << "Enter data for Permanent faculty" << endl;
+	 Faculty::setData();
+	 cout << "Enter years of service: ";
+	 cin >> years;
+	 cout << "Enter basic salary: ";
+	 cin >> basicPay;
  }
  void Permanent::print() {
 	 Faculty::print();
@@ -71,6 +86,14 @@ Faculty::Faculty(string n, int id) :name(n), ID(id) {}
 	 float result;
 	 result = rate * numberOfHours;
 	 return result;
+ }
+ void VisitingFaculty::setData() {
+	 cout << "Enter data for Visiting faculty" << endl;
+	 Faculty::setData();
+	 cout << "Enter per hour rate: ";
+	 cin >> rate;
+	 cout << "Enter number of hours of teaching: ";
+	 cin >> numberOfHours;
  }
  void VisitingFaculty::print() {
 	 Faculty::print();
