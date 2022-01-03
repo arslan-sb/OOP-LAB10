@@ -1,25 +1,77 @@
 // ConsoleApplication1.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include <iostream>
 #include <string>
-#include "Header.h"
 using namespace std;
+class Faculty {
+protected:
+	string name;
+	int ID;
 
+public:
+	Faculty() :name(), ID(0) {}
+	Faculty(string n, int id) :name(n), ID(id) {}
+	virtual float salary() = 0;
+	virtual void print() {
+		cout << "Name: " << name << "\nID" << ID << endl;
 
+	}
+};
+class Permanent :public Faculty {
+protected:
+	int years;
+	int basicPay;
 
-int main()
-{
-    A* r;
-    B g;
-    C h;
-    g.diplay();
-    r = &h;
-    r->diplay();
-   
+public:
+	Permanent() :Faculty(), years(0), basicPay(0) {}
+	Permanent(string n, int i, int y, int pay) :Faculty(n, i), years(y), basicPay(pay) {}
+	float salary() {
+		float result;
+		result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
+		return result;
+	}
+	void print() {
+		Faculty::print();
+		cout << "Years of service: " << years << endl;
+		cout << "Basic Pay: " << basicPay << endl;
+	}
 
+};
+class VisitingFaculty :public Faculty {
+protected:
+	int rate;
+	int numberOfHours;
 
-    return 0;
+public:
+	VisitingFaculty() :Faculty(), rate(0), numberOfHours(0) {}
+	VisitingFaculty(string n, int i, int y, int pay) :Faculty(n, i), rate(y), numberOfHours(pay) {}
+
+	float salary() {
+		float result;
+		result = rate * numberOfHours;
+		return result;
+	}
+	void print() {
+		Faculty::print();
+		cout << "Rate " << rate << endl;
+		cout << "Number of hours: " << numberOfHours << endl;
+	}
+};
+int main() {
+
+	Permanent p("Arslan", 53, 5, 50000);
+	VisitingFaculty v("Urooj", 97, 10000, 30);
+	Faculty* f;
+	f = &p;
+	f->print();
+	cout << "Salary: " << f->salary() << endl;
+
+	f = &v;
+	f->print();
+	cout << "Salary: " << f->salary() << endl;
+
+	system("pause");
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

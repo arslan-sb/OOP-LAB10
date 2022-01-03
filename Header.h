@@ -1,41 +1,54 @@
-#pragma once
-#include <iostream>
-using namespace std;
-class A {
+class Faculty {
 protected:
-	int x;
-	int y;
-public:
-	A() :x(0), y(0) {}
-	void setX(int a) { x = a; }
-	virtual  void diplay() = 0;
+	string name;
+	int ID;
 
-};
-class B :public A {
-private: 
-	int z;
 public:
-	B() :A(), z(0) {}
-	void diplay() {
-		cout << "x: " << x << endl;
-		cout << "y: " << y << endl;
-	}
-};
-class C: public A {
-private :
-	float d;
-public:
-	C() :A(), d(0) {}
-	void diplay() {
-		cout << "x: " << x << endl;
-		cout << "y: " << y << endl;
-		cout << "d: " << d << endl;
+	Faculty() :name(), ID(0) {}
+	Faculty(string n, int id) :name(n), ID(id) {}
+	virtual float salary() = 0;
+	virtual void print() {
+		cout << "Name: " << name << "\nID" << ID << endl;
 
 	}
 };
+class Permanent :public Faculty {
+protected:
+	int years;
+	int basicPay;
 
+public:
+	Permanent() :Faculty(), years(0), basicPay(0) {}
+	Permanent(string n, int i, int y, int pay) :Faculty(n, i), years(y), basicPay(pay) {}
+	float salary() {
+		float result;
+		result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
+		return result;
+	}
+	void print() {
+		Faculty::print();
+		cout << "Years of service: " << years << endl;
+		cout << "Basic Pay: " << basicPay << endl;
+	}
 
+};
+class VisitingFaculty :public Faculty {
+protected:
+	int rate;
+	int numberOfHours;
 
+public:
+	VisitingFaculty() :Faculty(), rate(0), numberOfHours(0) {}
+	VisitingFaculty(string n, int i, int y, int pay) :Faculty(n, i), rate(y), numberOfHours(pay) {}
 
-
-
+	float salary() {
+		float result;
+		result = rate * numberOfHours;
+		return result;
+	}
+	void print() {
+		Faculty::print();
+		cout << "Rate " << rate << endl;
+		cout << "Number of hours: " << numberOfHours << endl;
+	}
+};
