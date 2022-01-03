@@ -2,61 +2,10 @@
 //
 #include <iostream>
 #include <string>
+#include "Header.h"
 using namespace std;
-class Faculty {
-protected:
-	string name;
-	int ID;
 
-public:
-	Faculty() :name(), ID(0) {}
-	Faculty(string n, int id) :name(n), ID(id) {}
-	virtual float salary() = 0;
-	virtual void print() {
-		cout << "Name: " << name << "\nID" << ID << endl;
 
-	}
-};
-class Permanent :public Faculty {
-protected:
-	int years;
-	int basicPay;
-
-public:
-	Permanent() :Faculty(), years(0), basicPay(0) {}
-	Permanent(string n, int i, int y, int pay) :Faculty(n, i), years(y), basicPay(pay) {}
-	float salary() {
-		float result;
-		result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
-		return result;
-	}
-	void print() {
-		Faculty::print();
-		cout << "Years of service: " << years << endl;
-		cout << "Basic Pay: " << basicPay << endl;
-	}
-
-};
-class VisitingFaculty :public Faculty {
-protected:
-	int rate;
-	int numberOfHours;
-
-public:
-	VisitingFaculty() :Faculty(), rate(0), numberOfHours(0) {}
-	VisitingFaculty(string n, int i, int y, int pay) :Faculty(n, i), rate(y), numberOfHours(pay) {}
-
-	float salary() {
-		float result;
-		result = rate * numberOfHours;
-		return result;
-	}
-	void print() {
-		Faculty::print();
-		cout << "Rate " << rate << endl;
-		cout << "Number of hours: " << numberOfHours << endl;
-	}
-};
 int main() {
 
 	Permanent p("Arslan", 53, 5, 50000);
@@ -74,6 +23,41 @@ int main() {
 	return 0;
 }
 
+//Faculty class function definitions
+Faculty::Faculty() :name(), ID(0) {}
+Faculty::Faculty(string n, int id) :name(n), ID(id) {}
+
+void Faculty::print() {
+	cout << "Name: " << name << "\nID" << ID << endl;
+
+}
+//Permanant Faculty class function definitions
+Permanent::Permanent() :Faculty(), years(0), basicPay(0) {}
+Permanent::Permanent(string n, int i, int y, int pay) :Faculty(n, i), years(y), basicPay(pay) {}
+float Permanent::salary() {
+	float result;
+	result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
+	return result;
+}
+void Permanent::print() {
+	Faculty::print();
+	cout << "Years of service: " << years << endl;
+	cout << "Basic Pay: " << basicPay << endl;
+}
+//Visiting Faculty class function definitions
+VisitingFaculty::VisitingFaculty() :Faculty(), rate(0), numberOfHours(0) {}
+VisitingFaculty::VisitingFaculty(string n, int i, int y, int pay) :Faculty(n, i), rate(y), numberOfHours(pay) {}
+
+float VisitingFaculty::salary() {
+	float result;
+	result = rate * numberOfHours;
+	return result;
+}
+void VisitingFaculty::print() {
+	Faculty::print();
+	cout << "Rate " << rate << endl;
+	cout << "Number of hours: " << numberOfHours << endl;
+}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
