@@ -4,4 +4,8 @@ ConsoleApplication1.vcxproj.user
 Debug/
 .vscode/
 .vs/
+<<<<<<< HEAD
 Header1.h
+=======
+Header1.h
+>>>>>>> feature1

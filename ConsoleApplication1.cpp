@@ -4,28 +4,65 @@
 #include <string>
 #include "Header.h"
 using namespace std;
-
+void ignoreLine()
+{
+	cin.clear();
+	cin.ignore();
+}
 
 int main() {
 
-	Faculty* f;
-	Faculty* fV;
-	Permanent p("Arslan", 53, 5, 50000);
-	VisitingFaculty v("Urooj", 97, 10000, 30);
+	Faculty* f[2];
 	
-	f = &p;
-	f->print();
-	cout << "Salary: " << f->salary() << endl;
+	for (int i = 0; i < 2; i++)
+	{
+		int choice;
+		cout << "Enter\n1 for Permanant Faculty\n2 for Visiting Faculty" << endl;
+		
+		bool checkCase = false;
+		do
+		{
+			cin >> choice;
+			while (cin.fail()) {
+				ignoreLine();
+				cout << "please enter a integer" << endl;
+				cin >> choice;
+			}
 
-	fV = &v;
-	fV->print();
-	cout << "Salary: " << fV->salary() << endl;
+			switch (choice)
+			{
+			case 1:
+				f[i] = new Permanent;
+				checkCase = true;
+				break;
+			case 2:
+				f[i] = new VisitingFaculty;
+				checkCase = true;
+				break;
+			default:
+				cout << "Invalid Input!!" << endl;
+				break;
+			}
+		} while (checkCase == false);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		f[i]->setData();
+		cout << "Salary of faculty is: " << f[i]->salary() << endl;
+	}
 
 	system("pause");
 	return 0;
 }
 //Faculty class definition 
 Faculty::Faculty() :name(), ID(0) {}
+void Faculty::setData() {
+	cout << "Enter Name: ";
+	cin.ignore();
+	getline(cin, name);
+	cout << "Enter ID: ";
+	cin >> ID;
+}
 Faculty::Faculty(string n, int id) :name(n), ID(id) {}
  void Faculty::print() {
 	cout << "Name: " << name << "\nID" << ID << endl;
@@ -37,6 +74,14 @@ Faculty::Faculty(string n, int id) :name(n), ID(id) {}
 	 float result;
 	 result = basicPay + 0.10 * basicPay + 0.25 * basicPay;
 	 return result;
+ }
+ void Permanent::setData() {
+	 cout << "Enter data for Permanent faculty" << endl;
+	 Faculty::setData();
+	 cout << "Enter years of service: ";
+	 cin >> years;
+	 cout << "Enter basic salary: ";
+	 cin >> basicPay;
  }
  void Permanent::print() {
 	 Faculty::print();
@@ -52,6 +97,14 @@ Faculty::Faculty(string n, int id) :name(n), ID(id) {}
 	 float result;
 	 result = rate * numberOfHours;
 	 return result;
+ }
+ void VisitingFaculty::setData() {
+	 cout << "Enter data for Visiting faculty" << endl;
+	 Faculty::setData();
+	 cout << "Enter per hour rate: ";
+	 cin >> rate;
+	 cout << "Enter number of hours of teaching: ";
+	 cin >> numberOfHours;
  }
  void VisitingFaculty::print() {
 	 Faculty::print();

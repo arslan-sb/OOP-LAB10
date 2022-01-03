@@ -10,6 +10,7 @@ protected:
 public:
 	Faculty();
 	Faculty(string n, int id);
+	virtual void setData() = 0;
 	virtual float salary() = 0;
 	virtual void print();
 };
@@ -21,6 +22,7 @@ protected:
 public:
 	Permanent();
 	Permanent(string n, int i, int y, int pay);
+	void setData();
 	float salary();
 	void print();
 
@@ -33,7 +35,7 @@ protected:
 public:
 	VisitingFaculty();
 	VisitingFaculty(string n, int i, int y, int pay);
-
+	void setData();
 	float salary();
 	void print();
 };
