@@ -5,21 +5,40 @@
 #include "Header.h"
 using namespace std;
 
-
 int main() {
 
-	Faculty* f;
-	Faculty* fV;
-	Permanent p("Arslan", 53, 5, 50000);
-	VisitingFaculty v("Urooj", 97, 10000, 30);
+	Faculty* f[2];
 	
-	f = &p;
-	f->print();
-	cout << "Salary: " << f->salary() << endl;
-
-	fV = &v;
-	fV->print();
-	cout << "Salary: " << fV->salary() << endl;
+	for (int i = 0; i < 2; i++)
+	{
+		int choice;
+		cout << "Enter\n1 for Permanant Faculty\n2 for Visiting Faculty" << endl;
+		
+		bool checkCase = false;
+		do
+		{
+			cin >> choice;
+			switch (choice)
+			{
+			case 1:
+				f[i] = new Permanent;
+				checkCase = true;
+				break;
+			case 2:
+				f[i] = new VisitingFaculty;
+				checkCase = true;
+				break;
+			default:
+				cout << "Invalid Input!!" << endl;
+				break;
+			}
+		} while (checkCase == false);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		f[i]->setData();
+		cout << "Salary of faculty is: " << f[i]->salary() << endl;
+	}
 
 	system("pause");
 	return 0;
